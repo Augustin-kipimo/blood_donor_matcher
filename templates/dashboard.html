@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Dashboard</h1>
+<div class="cards">
+  <div class="card"><b>{{ counts.donors }}</b>Donors</div>
+  <div class="card"><b>{{ counts.hospitals }}</b>Hospitals</div>
+  <div class="card"><b>{{ open_requests|length }}</b>Open requests</div>
+  <div class="card"><b>{{ counts.donations }}</b>Donations</div>
+</div>
+
+<h2>Open blood requests (most urgent first)</h2>
+{% if open_requests %}
+<div class="table-wrap"><table>
+  <tr><th>ID</th><th>Hospital</th><th>Blood needed</th><th>Units</th><th>Urgency</th><th>Reason</th><th></th></tr>
+  {% for r in open_requests %}
+  <tr>
+    <td>{{ r['_id'] }}</td><td>{{ names.get(r.hospitalId, r.hospitalId) }}</td>
+    <td class="blood">{{ r.bloodTypeNeeded }}</td><td>{{ r.unitsReceived }} / {{ r.unitsNeeded }}</td>
+    <td><span class="badge {{ r.urgency }}">{{ r.urgency }}</span></td><td>{{ r.reason }}</td>
+    <td><a class="btn small" href="{{ url_for('request_match', request_id=r['_id']) }}">Match donors</a></td>
+  </tr>
+  {% endfor %}
+</table></div>
+{% else %}<p class="muted">No open requests right now.</p>{% endif %}
+
+<div class="grid2">
+  <div>
+    <h2>Donors per blood type</h2>
+    <div class="panel">
+      {% for row in by_type %}<span class="chip">{{ row['_id'] }}: {{ row.total }}</span>{% else %}<span class="muted">No donors yet.</span>{% endfor %}
+    </div>
+  </div>
+  <div>
+    <h2>Units donated per hospital</h2>
+    <div class="panel">
+      {% for row in per_hospital %}<div>{{ row.name }}: <b>{{ row.units }}</b> unit(s)</div>{% else %}<span class="muted">No donations yet.</span>{% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

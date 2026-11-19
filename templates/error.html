@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Database error{% endblock %}
+{% block content %}
+<h1>Could not reach the database</h1>
+<div class="panel">
+  <p>The app could not complete the MongoDB operation. Please check that:</p>
+  <ul>
+    <li>the <b>MongoDB service</b> is running (for example, open MongoDB Compass and connect to <code>mongodb://localhost:27017</code>);</li>
+    <li>you ran <code>python seed.py</code> at least once.</li>
+  </ul>
+  <p class="muted">Details: {{ message }}</p>
+  <a class="btn" href="{{ url_for('dashboard') }}">Try again</a>
+</div>
+{% endblock %}

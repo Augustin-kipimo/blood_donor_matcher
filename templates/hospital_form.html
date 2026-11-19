@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field, checkbox %}
+{% block title %}{{ 'Add hospital' if mode == 'new' else 'Edit hospital' }}{% endblock %}
+{% block content %}
+<h1>{{ 'Add hospital' if mode == 'new' else 'Edit hospital ' ~ hospital_id }}</h1>
+<form class="box panel" method="post">
+  {{ field("Hospital name", "name", form) }}
+  <div class="row2">{{ field("Area", "area", form) }}{{ field("Phone", "phone", form) }}</div>
+  <div class="row2">
+    {{ field("Latitude", "lat", form, type="number", step="any", hint="e.g. 0.316") }}
+    {{ field("Longitude", "lon", form, type="number", step="any", hint="e.g. 32.581") }}
+  </div>
+  {{ checkbox("Has a blood bank", "hasBloodBank", form) }}
+  <p><button class="btn" type="submit">{{ 'Save hospital' if mode == 'new' else 'Update hospital' }}</button>
+     <a class="btn light" href="{{ url_for('hospitals_list') }}">Cancel</a></p>
+</form>
+{% endblock %}

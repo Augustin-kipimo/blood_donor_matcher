@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Match donors{% endblock %}
+{% block content %}
+<h1>Matching donors for request {{ req['_id'] }}</h1>
+<div class="panel">
+  <p><b>Hospital:</b> {{ hosp.name }} ({{ hosp.area }}) &nbsp; <b>Phone:</b> {{ hosp.phone }}</p>
+  <p><b>Blood needed:</b> <span class="blood">{{ req.bloodTypeNeeded }}</span> &nbsp;
+     <b>Units:</b> {{ req.unitsReceived }} / {{ req.unitsNeeded }} &nbsp;
+     <span class="badge {{ req.urgency }}">{{ req.urgency }}</span> &nbsp; {{ req.reason }}</p>
+  <p><b>Compatible donor types:</b> {% for b in req.compatibleTypes %}<span class="chip">{{ b }}</span>{% endfor %}</p>
+  <p class="muted">Only donors who are available, have a compatible blood type, have not donated in the last
+     {{ days }} days, and live within {{ radius|int }} km are listed, nearest first.</p>
+  <form class="filters" method="get">
+    <label>Search radius (km):</label>
+    <input type="number" name="radius" value="{{ radius|int }}" min="1" max="500">
+    <button class="btn" type="submit">Search</button>
+  </form>
+</div>
+<h2>{{ donors|length }} matching donor(s)</h2>
+<div class="table-wrap"><table>
+  <tr><th>#</th><th>Name</th><th>Blood</th><th>Area</th><th>Phone</th><th>Distance</th><th>Last donation</th><th></th></tr>
+  {% for d in donors %}
+  <tr>
+    <td>{{ loop.index }}</td><td>{{ d.name }}</td><td class="blood">{{ d.bloodType }}</td>
+    <td>{{ d.area }}</td><td>{{ d.phone }}</td><td>{{ d.distance_km }} km</td>
+    <td>{{ d.lastDonationDate|date('Never') }}</td>
+    <td><a class="btn small" href="{{ url_for('donation_new', donorId=d['_id'], requestId=req['_id']) }}">Record donation</a></td>
+  </tr>
+  {% else %}<tr><td colspan="8" class="muted">No matching donors. Try a larger radius.</td></tr>{% endfor %}
+</table></div>
+<p><a href="{{ url_for('requests_list') }}">&larr; Back to requests</a></p>
+{% endblock %}

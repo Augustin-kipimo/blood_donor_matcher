@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field, select, checkbox %}
+{% block title %}{{ 'Add donor' if mode == 'new' else 'Edit donor' }}{% endblock %}
+{% block content %}
+<h1>{{ 'Add donor' if mode == 'new' else 'Edit donor ' ~ donor_id }}</h1>
+<form class="box panel" method="post">
+  {{ field("Full name", "name", form) }}
+  <div class="row2">
+    {{ select("Gender", "gender", [("F","Female"),("M","Male")], form, blank="Choose...") }}
+    {{ select("Blood type", "bloodType", blood_types, form, blank="Choose...") }}
+  </div>
+  <div class="row2">{{ field("Phone", "phone", form) }}{{ field("Area", "area", form) }}</div>
+  <div class="row2">
+    {{ field("Latitude", "lat", form, type="number", step="any", hint="e.g. 0.350") }}
+    {{ field("Longitude", "lon", form, type="number", step="any", hint="e.g. 32.585") }}
+  </div>
+  {{ field("Last donation date", "lastDonationDate", form, type="date", required=False, hint="Leave empty if the donor has never donated.") }}
+  {{ checkbox("Available to donate", "available", form) }}
+  <p><button class="btn" type="submit">{{ 'Save donor' if mode == 'new' else 'Update donor' }}</button>
+     <a class="btn light" href="{{ url_for('donors_list') }}">Cancel</a></p>
+</form>
+{% endblock %}

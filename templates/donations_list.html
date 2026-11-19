@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Donations{% endblock %}
+{% block content %}
+<div class="top"><h1>Donations</h1><a class="btn" href="{{ url_for('donation_new') }}">+ Record donation</a></div>
+<div class="table-wrap"><table>
+  <tr><th>ID</th><th>Date</th><th>Donor</th><th>Blood</th><th>Hospital</th><th>Request</th><th>Units</th><th>Type</th><th>Actions</th></tr>
+  {% for n in rows %}
+  <tr>
+    <td>{{ n['_id'] }}</td><td>{{ n.donationDate|date }}</td>
+    <td>{{ donors.get(n.donorId, n.donorId) }}</td><td class="blood">{{ n.bloodType }}</td>
+    <td>{{ names.get(n.hospitalId, n.hospitalId) }}</td><td>{{ n.requestId or '-' }}</td>
+    <td>{{ n.units }}</td><td>{{ n.type }}</td>
+    <td class="actions">
+      <a class="btn small light" href="{{ url_for('donation_edit', donation_id=n['_id']) }}">Edit</a>
+      <form method="post" action="{{ url_for('donation_delete', donation_id=n['_id']) }}" onsubmit="return confirm('Delete donation {{ n['_id'] }}?');">
+        <button class="btn small danger" type="submit">Delete</button></form>
+    </td>
+  </tr>
+  {% else %}<tr><td colspan="9" class="muted">No donations recorded.</td></tr>{% endfor %}
+</table></div>
+{% endblock %}

@@ -1,0 +1,92 @@
+[
+  {
+    "_id": "R01",
+    "hospitalId": "H04",
+    "bloodTypeNeeded": "O-",
+    "compatibleTypes": [
+      "O-"
+    ],
+    "unitsNeeded": 2,
+    "unitsReceived": 0,
+    "urgency": "Critical",
+    "reason": "Post-delivery bleeding",
+    "status": "Open",
+    "requestedAt": {
+      "$date": "2026-10-15T08:30:00Z"
+    }
+  },
+  {
+    "_id": "R02",
+    "hospitalId": "H01",
+    "bloodTypeNeeded": "A+",
+    "compatibleTypes": [
+      "A+",
+      "A-",
+      "O+",
+      "O-"
+    ],
+    "unitsNeeded": 1,
+    "unitsReceived": 0,
+    "urgency": "High",
+    "reason": "Road accident surgery",
+    "status": "Open",
+    "requestedAt": {
+      "$date": "2026-10-15T11:10:00Z"
+    }
+  },
+  {
+    "_id": "R03",
+    "hospitalId": "H03",
+    "bloodTypeNeeded": "B+",
+    "compatibleTypes": [
+      "B+",
+      "B-",
+      "O+",
+      "O-"
+    ],
+    "unitsNeeded": 2,
+    "unitsReceived": 2,
+    "urgency": "Medium",
+    "reason": "Severe anaemia",
+    "status": "Fulfilled",
+    "requestedAt": {
+      "$date": "2026-06-14T09:00:00Z"
+    }
+  },
+  {
+    "_id": "R04",
+    "hospitalId": "H02",
+    "bloodTypeNeeded": "O+",
+    "compatibleTypes": [
+      "O+",
+      "O-"
+    ],
+    "unitsNeeded": 2,
+    "unitsReceived": 0,
+    "urgency": "High",
+    "reason": "Planned surgery",
+    "status": "Open",
+    "requestedAt": {
+      "$date": "2026-10-16T06:45:00Z"
+    }
+  },
+  {
+    "_id": "R05",
+    "hospitalId": "H05",
+    "bloodTypeNeeded": "AB-",
+    "compatibleTypes": [
+      "AB-",
+      "A-",
+      "B-",
+      "O-"
+    ],
+    "unitsNeeded": 1,
+    "unitsReceived": 0,
+    "urgency": "Critical",
+    "reason": "Child with sickle cell crisis",
+    "status": "Open",
+    "requestedAt": {
+      "$date": "2026-10-16T07:20:00Z"
+    }
+  }
+]

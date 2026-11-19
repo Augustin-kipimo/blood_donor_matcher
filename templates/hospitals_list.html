@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Hospitals{% endblock %}
+{% block content %}
+<div class="top"><h1>Hospitals</h1><a class="btn" href="{{ url_for('hospital_new') }}">+ Add hospital</a></div>
+<div class="table-wrap"><table>
+  <tr><th>ID</th><th>Name</th><th>Area</th><th>Phone</th><th>Location (lat, lon)</th><th>Blood bank</th><th>Actions</th></tr>
+  {% for h in hospitals %}
+  <tr>
+    <td>{{ h['_id'] }}</td><td>{{ h.name }}</td><td>{{ h.area }}</td><td>{{ h.phone }}</td>
+    <td>{{ h.location.coordinates[1] }}, {{ h.location.coordinates[0] }}</td>
+    <td><span class="badge {{ 'yes' if h.hasBloodBank else 'no' }}">{{ 'Yes' if h.hasBloodBank else 'No' }}</span></td>
+    <td class="actions">
+      <a class="btn small light" href="{{ url_for('hospital_edit', hospital_id=h['_id']) }}">Edit</a>
+      <form method="post" action="{{ url_for('hospital_delete', hospital_id=h['_id']) }}" onsubmit="return confirm('Delete hospital {{ h.name }}?');">
+        <button class="btn small danger" type="submit">Delete</button></form>
+    </td>
+  </tr>
+  {% else %}<tr><td colspan="7" class="muted">No hospitals yet.</td></tr>{% endfor %}
+</table></div>
+{% endblock %}

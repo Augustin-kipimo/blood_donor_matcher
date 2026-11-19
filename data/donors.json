@@ -1,0 +1,95 @@
+[
+  {
+    "_id": "D01",
+    "name": "Aisha Namuli",
+    "gender": "F",
+    "phone": "0772000001",
+    "bloodType": "O-",
+    "area": "Northside",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        32.585,
+        0.35
+      ]
+    },
+    "lastDonationDate": {
+      "$date": "2026-05-10T00:00:00Z"
+    },
+    "available": true
+  },
+  {
+    "_id": "D02",
+    "name": "Joseph Mukasa",
+    "gender": "M",
+    "phone": "0772000002",
+    "bloodType": "A+",
+    "area": "Eastgate",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        32.62,
+        0.315
+      ]
+    },
+    "lastDonationDate": {
+      "$date": "2026-08-20T00:00:00Z"
+    },
+    "available": true
+  },
+  {
+    "_id": "D03",
+    "name": "Ruth Akello",
+    "gender": "F",
+    "phone": "0772000003",
+    "bloodType": "O+",
+    "area": "Westfield",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        32.55,
+        0.32
+      ]
+    },
+    "lastDonationDate": {
+      "$date": "2026-06-15T00:00:00Z"
+    },
+    "available": true
+  },
+  {
+    "_id": "D04",
+    "name": "Isaac Waswa",
+    "gender": "M",
+    "phone": "0772000004",
+    "bloodType": "B+",
+    "area": "Central",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        32.582,
+        0.313
+      ]
+    },
+    "lastDonationDate": {
+      "$date": "2026-06-15T00:00:00Z"
+    },
+    "available": true
+  },
+  {
+    "_id": "D05",
+    "name": "Patricia Nanteza",
+    "gender": "F",
+    "phone": "0772000005",
+    "bloodType": "AB-",
+    "area": "Southpark",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        32.6,
+        0.28
+      ]
+    },
+    "lastDonationDate": null,
+    "available": true
+  }
+]

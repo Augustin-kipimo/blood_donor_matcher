@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "H01",
+    "name": "Central General Hospital",
+    "area": "Central",
+    "phone": "0414000001",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        32.581,
+        0.316
+      ]
+    },
+    "hasBloodBank": true
+  },
+  {
+    "_id": "H02",
+    "name": "Northside Medical Centre",
+    "area": "Northside",
+    "phone": "0414000002",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        32.587,
+        0.348
+      ]
+    },
+    "hasBloodBank": false
+  },
+  {
+    "_id": "H03",
+    "name": "Eastgate Referral Hospital",
+    "area": "Eastgate",
+    "phone": "0414000003",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        32.618,
+        0.317
+      ]
+    },
+    "hasBloodBank": true
+  },
+  {
+    "_id": "H04",
+    "name": "Westfield Maternity Home",
+    "area": "Westfield",
+    "phone": "0414000004",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        32.552,
+        0.322
+      ]
+    },
+    "hasBloodBank": false
+  },
+  {
+    "_id": "H05",
+    "name": "Southpark Children's Clinic",
+    "area": "Southpark",
+    "phone": "0414000005",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        32.598,
+        0.282
+      ]
+    },
+    "hasBloodBank": false
+  }
+]

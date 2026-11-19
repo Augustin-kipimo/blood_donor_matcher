@@ -1,0 +1,24 @@
+{% macro field(label, name, form, type="text", required=True, step=None, min=None, hint=None) %}
+<label for="{{ name }}">{{ label }}{% if required %}<span class="req">*</span>{% endif %}</label>
+<input id="{{ name }}" type="{{ type }}" name="{{ name }}" value="{{ form.get(name, '') }}"
+  {% if required %}required{% endif %}{% if step %} step="{{ step }}"{% endif %}{% if min is not none %} min="{{ min }}"{% endif %}>
+{% if hint %}<small>{{ hint }}</small>{% endif %}
+{% endmacro %}
+
+{% macro select(label, name, options, form, blank=None, required=True) %}
+<label for="{{ name }}">{{ label }}{% if required %}<span class="req">*</span>{% endif %}</label>
+<select id="{{ name }}" name="{{ name }}" {% if required and blank is none %}required{% endif %}>
+  {% if blank is not none %}<option value="">{{ blank }}</option>{% endif %}
+  {% for opt in options %}
+  {% set value = opt if opt is string else opt[0] %}{% set text = opt if opt is string else opt[1] %}
+  <option value="{{ value }}" {% if form.get(name, '')|string == value|string %}selected{% endif %}>{{ text }}</option>
+  {% endfor %}
+</select>
+{% endmacro %}
+
+{% macro checkbox(label, name, form) %}
+<div class="check" style="margin-top:12px">
+  <input id="{{ name }}" type="checkbox" name="{{ name }}" {% if form.get(name) %}checked{% endif %}>
+  <label for="{{ name }}">{{ label }}</label>
+</div>
+{% endmacro %}

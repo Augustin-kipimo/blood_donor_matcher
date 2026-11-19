@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field, select %}
+{% block title %}{{ 'New request' if mode == 'new' else 'Edit request' }}{% endblock %}
+{% block content %}
+{% set hosp_opts = [] %}
+{% for h in hospitals %}{% set _ = hosp_opts.append((h['_id'], h['_id'] ~ ' - ' ~ h.name)) %}{% endfor %}
+<h1>{{ 'New blood request' if mode == 'new' else 'Edit request ' ~ request_id }}</h1>
+<form class="box panel" method="post">
+  {{ select("Hospital", "hospitalId", hosp_opts, form, blank="Choose...") }}
+  <div class="row2">
+    {{ select("Blood type needed", "bloodTypeNeeded", blood_types, form, blank="Choose...") }}
+    {{ field("Units needed", "unitsNeeded", form, type="number", min=1) }}
+  </div>
+  {{ select("Urgency", "urgency", urgencies, form, blank="Choose...") }}
+  {{ field("Reason", "reason", form, hint="e.g. Road accident surgery") }}
+  {% if mode == 'edit' %}
+    {{ select("Status", "status", [("Open","Open"),("Cancelled","Cancelled")], form) }}
+    <small>Status changes to Fulfilled automatically when enough units are donated.</small>
+  {% endif %}
+  <p class="muted">The list of compatible donor blood types is filled in automatically from the blood type needed.</p>
+  <p><button class="btn" type="submit">{{ 'Create request' if mode == 'new' else 'Update request' }}</button>
+     <a class="btn light" href="{{ url_for('requests_list') }}">Cancel</a></p>
+</form>
+{% endblock %}

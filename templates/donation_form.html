@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "_macros.html" import field, select %}
+{% block title %}{{ 'Record donation' if mode == 'new' else 'Edit donation' }}{% endblock %}
+{% block content %}
+{% set donor_opts = [] %}{% set hosp_opts = [] %}{% set req_opts = [] %}
+{% for d in donors %}{% set _ = donor_opts.append((d['_id'], d['_id'] ~ ' - ' ~ d.name ~ ' (' ~ d.bloodType ~ ')')) %}{% endfor %}
+{% for h in hospitals %}{% set _ = hosp_opts.append((h['_id'], h['_id'] ~ ' - ' ~ h.name)) %}{% endfor %}
+{% for r in open_requests %}{% set _ = req_opts.append((r['_id'], r['_id'] ~ ' - needs ' ~ r.bloodTypeNeeded ~ ' (' ~ r.reason ~ ')')) %}{% endfor %}
+<h1>{{ 'Record a donation' if mode == 'new' else 'Edit donation ' ~ donation_id }}</h1>
+<form class="box panel" method="post">
+  {{ select("Donor", "donorId", donor_opts, form, blank="Choose...") }}
+  {{ select("Request being answered", "requestId", req_opts, form, blank="None (voluntary donation)", required=False) }}
+  <small>If you pick a request, the hospital is set to that request's hospital and the donor's blood type is checked for compatibility.</small>
+  {{ select("Hospital", "hospitalId", hosp_opts, form, blank="Choose...", required=False) }}
+  <div class="row2">
+    {{ field("Units", "units", form, type="number", min=1) }}
+    {{ field("Donation date", "donationDate", form, type="date") }}
+  </div>
+  {{ select("Type", "type", types, form, blank="Choose...") }}
+  <p class="muted">The donor's last donation date and the request's units received and status are updated automatically.</p>
+  <p><button class="btn" type="submit">{{ 'Save donation' if mode == 'new' else 'Update donation' }}</button>
+     <a class="btn light" href="{{ url_for('donations_list') }}">Cancel</a></p>
+</form>
+{% endblock %}

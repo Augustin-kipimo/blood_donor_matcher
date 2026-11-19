@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ d.name }}{% endblock %}
+{% block content %}
+{% set ok = d.available and (not d.lastDonationDate or d.lastDonationDate < cutoff) %}
+<div class="top"><h1>{{ d.name }} <span class="blood">({{ d.bloodType }})</span></h1>
+  <div><a class="btn light" href="{{ url_for('donor_edit', donor_id=d['_id']) }}">Edit</a>
+       <a class="btn" href="{{ url_for('donation_new', donorId=d['_id']) }}">Record donation</a></div></div>
+<div class="panel">
+  <p><b>ID:</b> {{ d['_id'] }} &nbsp; <b>Gender:</b> {{ d.gender }} &nbsp; <b>Phone:</b> {{ d.phone }}</p>
+  <p><b>Area:</b> {{ d.area }} &nbsp; <b>Location (lat, lon):</b> {{ d.location.coordinates[1] }}, {{ d.location.coordinates[0] }}</p>
+  <p><b>Last donation:</b> {{ d.lastDonationDate|date('Never') }} &nbsp;
+     <b>Available:</b> {{ 'Yes' if d.available else 'No' }} &nbsp;
+     <b>Can donate now:</b> <span class="badge {{ 'yes' if ok else 'no' }}">{{ 'Yes' if ok else 'No' }}</span></p>
+</div>
+<h2>Donation history</h2>
+<div class="table-wrap"><table>
+  <tr><th>ID</th><th>Date</th><th>Hospital</th><th>Request</th><th>Units</th><th>Type</th></tr>
+  {% for n in donations %}
+  <tr><td>{{ n['_id'] }}</td><td>{{ n.donationDate|date }}</td><td>{{ names.get(n.hospitalId, n.hospitalId) }}</td>
+      <td>{{ n.requestId or '-' }}</td><td>{{ n.units }}</td><td>{{ n.type }}</td></tr>
+  {% else %}<tr><td colspan="6" class="muted">No donations recorded.</td></tr>{% endfor %}
+</table></div>
+<p><a href="{{ url_for('donors_list') }}">&larr; Back to donors</a></p>
+{% endblock %}

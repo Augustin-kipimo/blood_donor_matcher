@@ -1,0 +1,53 @@
+:root { --red:#b3202a; --dark:#3b0a0f; --bg:#faf7f7; --line:#e4d9d9; --ok:#1a7f43; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--bg); color:#222; line-height:1.5; }
+.wrap { max-width: 1050px; margin: 0 auto; padding: 0 16px; }
+header { background: var(--dark); color:#fff; }
+header .wrap { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; padding-top:12px; padding-bottom:12px; }
+.brand { color:#fff; text-decoration:none; font-weight:bold; font-size:1.2rem; }
+.brand::before { content:""; display:inline-block; width:12px; height:16px; background:#e0343f; border-radius:50% 50% 50% 50% / 60% 60% 40% 40%; margin-right:8px; vertical-align:-2px; }
+nav a { color:#f1d9db; text-decoration:none; margin-left:14px; padding:4px 2px; }
+nav a:hover, nav a.active { color:#fff; border-bottom:2px solid #e0343f; }
+main { padding-top: 18px; padding-bottom: 40px; min-height: 70vh; }
+footer { text-align:center; color:#777; font-size:.85rem; padding:14px; border-top:1px solid var(--line); }
+h1 { color:var(--red); font-size:1.6rem; margin:6px 0 14px; }
+h2 { color:var(--dark); font-size:1.15rem; margin:22px 0 8px; }
+.top { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+.btn { display:inline-block; background:var(--red); color:#fff; border:none; padding:7px 14px; border-radius:5px; text-decoration:none; cursor:pointer; font-size:.9rem; }
+.btn:hover { background:#8f1921; }
+.btn.light { background:#fff; color:var(--red); border:1px solid var(--red); }
+.btn.small { padding:3px 9px; font-size:.8rem; }
+.btn.danger { background:#fff; color:#a11; border:1px solid #a11; }
+.btn.green { background:var(--ok); }
+table { width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); font-size:.9rem; }
+th { background:var(--dark); color:#fff; text-align:left; padding:8px; }
+td { padding:8px; border-top:1px solid var(--line); vertical-align:middle; }
+tr:nth-child(even) td { background:#fcf8f8; }
+.actions { white-space:nowrap; }
+.actions form { display:inline; }
+.table-wrap { overflow-x:auto; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
+.card { background:#fff; border:1px solid var(--line); border-radius:8px; padding:14px; text-align:center; }
+.card b { display:block; font-size:1.8rem; color:var(--red); }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+@media (max-width:720px) { .grid2 { grid-template-columns:1fr; } }
+.panel { background:#fff; border:1px solid var(--line); border-radius:8px; padding:14px; }
+.badge { display:inline-block; padding:1px 8px; border-radius:10px; font-size:.78rem; background:#eee; }
+.badge.Critical { background:#b3202a; color:#fff; } .badge.High { background:#e8872b; color:#fff; }
+.badge.Medium { background:#e6c84a; } .badge.Open { background:#fde2e4; color:#8f1921; }
+.badge.Fulfilled { background:#d5f0df; color:#1a7f43; } .badge.Cancelled { background:#ddd; color:#555; }
+.badge.yes { background:#d5f0df; color:#1a7f43; } .badge.no { background:#fde2e4; color:#8f1921; }
+.blood { font-weight:bold; color:var(--red); }
+.flash { padding:9px 12px; border-radius:5px; margin-bottom:10px; }
+.flash.ok { background:#d5f0df; color:#14532d; } .flash.error { background:#fde2e4; color:#8f1921; }
+form.box label { display:block; margin:10px 0 2px; font-weight:bold; font-size:.9rem; }
+form.box input[type=text], form.box input[type=number], form.box input[type=date], form.box select {
+  width:100%; padding:8px; border:1px solid #bbb; border-radius:5px; font-size:.95rem; }
+form.box small { color:#777; }
+form.box .check label { display:inline; font-weight:normal; }
+.req { color:var(--red); margin-left:2px; }
+.row2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+.filters input, .filters select { padding:7px; border:1px solid #bbb; border-radius:5px; }
+.muted { color:#777; }
+.chip { display:inline-block; padding:1px 8px; margin:0 3px 3px 0; background:#fde2e4; color:#8f1921; border-radius:10px; font-size:.82rem; font-weight:bold; }
